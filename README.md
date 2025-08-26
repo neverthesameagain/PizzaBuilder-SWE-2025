@@ -1,6 +1,6 @@
 # Pizza Builder - Builder Pattern Implementation
 
-A Java project demonstrating the **Builder Pattern** for creating customizable pizzas. This project shows how to implement clean, maintainable code using object-oriented design principles.
+A Java project demonstrating the **Builder Pattern** for creating customizable pizzas. 
 
 ## What This Project Does
 
@@ -8,7 +8,7 @@ This project implements a **Pizza Builder** that allows you to create custom piz
 
 ## How It Works
 
-### The Builder Pattern Explained
+### The Builder Pattern 
 
 The Builder Pattern is a **creational design pattern** that helps you create complex objects step by step. Think of it like ordering a pizza:
 
@@ -20,18 +20,42 @@ The Builder Pattern is a **creational design pattern** that helps you create com
 6. **Finalize** your order
 
 Each step builds on the previous one, and you can customize exactly what you want without worrying about the complexity behind the scenes.
+## Architecture & Design Principles
 
+### **Builder Pattern**
+
+- **PizzaBuilder**: Handles configuration and validation
+- **Pizza**: Represents the final, immutable pizza object
+- **Main**: Simple entry point for demonstration
+
+### **Encapsulation**
+
+- Pizza constructor is package-private (only accessible by PizzaBuilder)
+- Internal data is protected from external modification
+- Public methods provide controlled access to pizza attributes
+
+### **Immutability**
+
+- All Pizza fields are final
+- Collections are unmodifiable
+- Defensive copying prevents external modification
+
+### **Extensibility**
+
+- Easy to add new pizza attributes
+- Builder pattern makes adding new features straightforward
+- Test suite ensures changes don't break existing functionality
 ### Project Structure
 
 ```
 src/
 ├── main/java/org/example/
-│   ├── Main.java              # Application entry point
+│   ├── Main.java              #  entry point
 │   └── pizza/
 │       ├── Pizza.java         # The final pizza object (immutable)
 │       └── PizzaBuilder.java  # The builder that creates pizzas
 └── test/java/org/example/pizza/
-    └── PizzaBuilderTest.java  # Comprehensive test suite
+    └── PizzaBuilderTest.java  # Test cases
 ```
 
 ## Prerequisites
@@ -44,8 +68,8 @@ src/
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
-   cd PizzaBuilder_Software_122201017_IndividualProject
+   git clone https://github.com/neverthesameagain/PizzaBuilder-SWE-2025
+   cd PizzaBuilder-SWE-2025
    ```
 2. **Build the project:**
 
@@ -55,23 +79,19 @@ src/
 3. **Run the tests:**
 
    ```bash
-   mvn test
+   mvn clean test
    ```
-4. **Run the application:**
 
-   ```bash
-   mvn exec:java -Dexec.mainClass="org.example.Main"
-   ```
 
 ## How to Use the Pizza Builder
 
 ### Basic Usage
 
 ```java
-// Create a new pizza builder
+// Creating a new pizza builder
 PizzaBuilder builder = new PizzaBuilder();
 
-// Configure your pizza
+// Configure the pizza
 builder.setCrust("Thick");
 builder.setSize("Large");
 builder.setCheese("Cheddar");
@@ -80,11 +100,11 @@ builder.addTopping("Pepperoni");
 builder.addTopping("Mushrooms");
 builder.addTopping("Olives");
 
-// Build your pizza
+// Building pizza
 Pizza myPizza = builder.build();
 
-// Enjoy your pizza! 🍕
-System.out.println("My pizza: " + myPizza);
+
+System.out.println( myPizza);
 ```
 
 ### Using Defaults
@@ -124,7 +144,7 @@ Pizza pizza = builder.build();
 
 ### **Fluent API**
 
-Easy to read and chain method calls:
+Chained method calls:
 
 ```java
 PizzaBuilder builder = new PizzaBuilder();
@@ -204,40 +224,16 @@ mvn test -Dtest=PizzaBuilderTest
 mvn test -Dtest=PizzaBuilderTest#buildsPizzaWithBuilderSetters
 ```
 
-## Architecture & Design Principles
 
-### **Separation of Concerns**
 
-- **PizzaBuilder**: Handles configuration and validation
-- **Pizza**: Represents the final, immutable pizza object
-- **Main**: Simple entry point for demonstration
 
-### **Encapsulation**
-
-- Pizza constructor is package-private (only accessible by PizzaBuilder)
-- Internal data is protected from external modification
-- Public methods provide controlled access to pizza attributes
-
-### **Immutability**
-
-- All Pizza fields are final
-- Collections are unmodifiable
-- Defensive copying prevents external modification
-
-### **Extensibility**
-
-- Easy to add new pizza attributes
-- Builder pattern makes adding new features straightforward
-- Test suite ensures changes don't break existing functionality
 
 ## Code Quality
 
-The project follows strict coding standards:
-
 - **Checkstyle**: Enforces consistent code formatting and style
-- **JUnit 5**: Modern testing framework with comprehensive assertions
+- **JUnit 5**: Testing framework with comprehensive assertions
 - **Maven**: Standard build tool with dependency management
-- **Java 24**: Latest LTS version with modern language features
+
 
 ### Code Quality Checks
 
@@ -248,36 +244,13 @@ mvn validate
 # Run tests and checkstyle
 mvn clean verify
 ```
+or 
+```bash
+mvn clean test
+```
 
-## Learning Objectives
 
-This project demonstrates several important software engineering concepts:
 
-1. **Design Patterns**: Builder Pattern implementation
-2. **Object-Oriented Design**: Encapsulation, immutability, separation of concerns
-3. **Testing**: Comprehensive unit testing with JUnit 5
-4. **Code Quality**: Checkstyle enforcement and clean code principles
-5. **Build Tools**: Maven project structure and dependency management
-
-## Future Enhancements
-
-Potential improvements that could be added:
-
-- **Fluent Interface**: Method chaining for better readability
-- **Validation Rules**: More sophisticated input validation
-- **Pizza Types**: Predefined pizza configurations (Margherita, Pepperoni, etc.)
-- **Price Calculation**: Cost calculation based on size and toppings
-- **Persistence**: Save and load pizza configurations
-- **GUI Interface**: Visual pizza builder application
-
-## Contributing
-
-This is an individual project, but the code demonstrates best practices that could be extended or improved. Feel free to:
-
-- Study the code structure and design patterns
-- Run the tests to understand the functionality
-- Experiment with adding new features
-- Use as a reference for implementing the Builder pattern
 
 ## Resources referred to
 
@@ -285,7 +258,3 @@ This is an individual project, but the code demonstrates best practices that cou
 - [Java Design Patterns](https://refactoring.guru/design-patterns/java)
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 - [Maven Getting Started Guide](https://maven.apache.org/guides/getting-started/)
-
-## License
-
-This project is created for educational purposes to demonstrate software engineering principles and design patterns.
