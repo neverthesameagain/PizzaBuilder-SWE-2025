@@ -3,22 +3,14 @@ package org.example;
 /**
  * Main entry point for the Pizza Builder application.
  *
- * <p>This is a simple demonstration of the Builder Pattern implementation
- * for creating customizable pizzas. The actual pizza building happens
- * through the PizzaBuilder class, not here.
- *
- * <p>To see the Pizza Builder in action, you would typically:
- * 1. Create a PizzaBuilder instance
- * 2. Configure your pizza (crust, size, cheese, sauce, toppings)
- * 3. Call build() to get your immutable Pizza object
+ * <p>Demonstrates the Builder Pattern for creating customizable pizzas.
+ * The actual pizza building happens through the PizzaBuilder class.
  */
 public class Main {
     /**
      * Application entry point.
      *
-     * <p>Currently just prints a ready message. In a real application,
-     * this might start a GUI, web server, or command-line interface
-     * for building pizzas interactively.
+     * <p>Prints a ready message and demonstrates how to use the Pizza Builder.
      *
      * @param args command-line arguments (currently unused)
      */
@@ -26,16 +18,12 @@ public class Main {
         System.out.println("Pizza Builder ready");
         System.out.println("Use PizzaBuilder to create your custom pizza!");
         
-        // Example of how to use the Pizza Builder (commented out since this is just demo)
+        // Example usage (commented out for demo)
         /*
         PizzaBuilder builder = new PizzaBuilder();
         builder.setCrust("Thick");
         builder.setSize("Large");
-        builder.setCheese("Cheddar");
-        builder.setSauce("BBQ");
-        builder.addTopping("Chicken");
-        builder.addTopping("Bacon");
-        
+        builder.addTopping("Pepperoni");
         Pizza myPizza = builder.build();
         System.out.println("Your pizza: " + myPizza);
         */

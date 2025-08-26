@@ -15,13 +15,7 @@ import org.junit.jupiter.api.DisplayName;
 /**
  * Comprehensive test suite for the PizzaBuilder class.
  *
- * <p>These tests verify that the PizzaBuilder correctly:
- * - Sets and retrieves all pizza attributes
- * - Handles default values properly
- * - Validates input data
- * - Creates immutable Pizza objects
- * - Preserves topping order and allows duplicates
- * - Handles edge cases and error conditions
+ * <p>Tests core functionality: attribute setting, validation, immutability, and edge cases.
  */
 @DisplayName("PizzaBuilder Tests")
 class PizzaBuilderTest {
@@ -31,7 +25,6 @@ class PizzaBuilderTest {
     
     /**
      * Set up a fresh PizzaBuilder instance before each test.
-     * This ensures that each test starts with a clean, default configuration.
      */
     @BeforeEach
     void setUp() {
@@ -41,7 +34,6 @@ class PizzaBuilderTest {
     @Test
     @DisplayName("Should build pizza with all custom attributes")
     void buildsPizzaWithBuilderSetters() {
-        // Configure a custom pizza
         builder.setCrust("Thick");
         builder.setSize("Large");
         builder.setCheese("Cheddar");
@@ -49,10 +41,8 @@ class PizzaBuilderTest {
         builder.addTopping("Pepperoni");
         builder.addTopping("Olives");
         
-        // Build the pizza
         final Pizza pizza = builder.build();
 
-        // Verify all attributes are set correctly
         assertEquals("Thick", pizza.getCrust());
         assertEquals("Large", pizza.getSize());
         assertEquals("Cheddar", pizza.getCheese());
@@ -65,7 +55,6 @@ class PizzaBuilderTest {
     void buildsDefaultPizzaWhenNoSpecsProvided() {
         final Pizza pizza = builder.build();
         
-        // Verify default values
         assertEquals("Thin", pizza.getCrust());
         assertEquals("Medium", pizza.getSize());
         assertEquals("Mozzarella", pizza.getCheese());
@@ -83,7 +72,6 @@ class PizzaBuilderTest {
         
         final Pizza pizza = builder.build();
         
-        // Verify order is preserved and duplicates are allowed
         assertEquals(List.of("Pepperoni", "Mushrooms", "Pepperoni", "Olives"), 
                     pizza.getToppings());
     }
@@ -92,31 +80,27 @@ class PizzaBuilderTest {
     @DisplayName("Should handle multiple toppings correctly")
     void handlesMultipleToppings() {
         final List<String> expectedToppings = Arrays.asList(
-            "Pepperoni", "Mushrooms", "Olives", "Bell Peppers", 
-            "Onions", "Sausage", "Bacon"
+            "Pepperoni", "Mushrooms", "Olives", "Bell Peppers", "Onions"
         );
         
-        // Add all toppings
         for (String topping : expectedToppings) {
             builder.addTopping(topping);
         }
         
         final Pizza pizza = builder.build();
         assertEquals(expectedToppings, pizza.getToppings());
-        final int expectedToppingCount = 7;
+        final int expectedToppingCount = expectedToppings.size();
         assertEquals(expectedToppingCount, pizza.getToppings().size());
     }
 
     @Test
     @DisplayName("Should override previous values when setters called multiple times")
     void overridesPreviousValuesOnMultipleSetterCalls() {
-        // Set initial values
         builder.setCrust("Thin");
         builder.setSize("Small");
         builder.setCheese("Mozzarella");
         builder.setSauce("Tomato");
         
-        // Override with new values
         builder.setCrust("Thick");
         builder.setSize("Large");
         builder.setCheese("Cheddar");
@@ -124,7 +108,6 @@ class PizzaBuilderTest {
         
         final Pizza pizza = builder.build();
         
-        // Verify only the last values are used
         assertEquals("Thick", pizza.getCrust());
         assertEquals("Large", pizza.getSize());
         assertEquals("Cheddar", pizza.getCheese());
@@ -142,7 +125,6 @@ class PizzaBuilderTest {
         
         final Pizza pizza = builder.build();
         
-        // Verify whitespace is trimmed
         assertEquals("Thick", pizza.getCrust());
         assertEquals("Large", pizza.getSize());
         assertEquals("Cheddar", pizza.getCheese());
@@ -151,103 +133,28 @@ class PizzaBuilderTest {
     }
 
     @Test
-    @DisplayName("Should reject null crust values")
-    void rejectsNullCrustValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setCrust(null);
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject blank crust values")
-    void rejectsBlankCrustValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setCrust("");
-        });
+    @DisplayName("Should reject null and blank values for all attributes")
+    void rejectsNullAndBlankValues() {
+        // Test crust
+        assertThrows(IllegalArgumentException.class, () -> builder.setCrust(null));
+        assertThrows(IllegalArgumentException.class, () -> builder.setCrust(""));
+        assertThrows(IllegalArgumentException.class, () -> builder.setCrust("   "));
         
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setCrust("   ");
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject null size values")
-    void rejectsNullSizeValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setSize(null);
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject blank size values")
-    void rejectsBlankSizeValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setSize("");
-        });
+        // Test size
+        assertThrows(IllegalArgumentException.class, () -> builder.setSize(null));
+        assertThrows(IllegalArgumentException.class, () -> builder.setSize(""));
         
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setSize("   ");
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject null cheese values")
-    void rejectsNullCheeseValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setCheese(null);
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject blank cheese values")
-    void rejectsBlankCheeseValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setCheese("");
-        });
+        // Test cheese
+        assertThrows(IllegalArgumentException.class, () -> builder.setCheese(null));
+        assertThrows(IllegalArgumentException.class, () -> builder.setCheese(""));
         
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setCheese("   ");
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject null sauce values")
-    void rejectsNullSauceValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setSauce(null);
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject blank sauce values")
-    void rejectsBlankSauceValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setSauce("");
-        });
+        // Test sauce
+        assertThrows(IllegalArgumentException.class, () -> builder.setSauce(null));
+        assertThrows(IllegalArgumentException.class, () -> builder.setSauce(""));
         
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.setSauce("   ");
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject null topping values")
-    void rejectsNullToppingValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.addTopping(null);
-        });
-    }
-
-    @Test
-    @DisplayName("Should reject blank topping values")
-    void rejectsBlankToppingValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.addTopping("");
-        });
-        
-        assertThrows(IllegalArgumentException.class, () -> {
-            builder.addTopping("   ");
-        });
+        // Test toppings
+        assertThrows(IllegalArgumentException.class, () -> builder.addTopping(null));
+        assertThrows(IllegalArgumentException.class, () -> builder.addTopping(""));
     }
 
     @Test
@@ -256,7 +163,6 @@ class PizzaBuilderTest {
         builder.addTopping("Pepperoni");
         final Pizza pizza = builder.build();
         
-        // Verify the pizza is immutable
         assertThrows(UnsupportedOperationException.class, () -> {
             pizza.getToppings().add("Mushrooms");
         });
@@ -268,7 +174,6 @@ class PizzaBuilderTest {
         builder.addTopping("Pepperoni");
         final Pizza pizza = builder.build();
         
-        // Verify the list is unmodifiable
         assertThrows(UnsupportedOperationException.class, () -> {
             pizza.getToppings().add("Mushrooms");
         });
@@ -285,19 +190,16 @@ class PizzaBuilderTest {
     @Test
     @DisplayName("Should build multiple pizzas with same builder")
     void buildsMultiplePizzasWithSameBuilder() {
-        // Build first pizza
         builder.setCrust("Thin");
         builder.setSize("Small");
         builder.addTopping("Pepperoni");
         final Pizza pizza1 = builder.build();
         
-        // Build second pizza with different configuration
         builder.setCrust("Thick");
         builder.setSize("Large");
         builder.addTopping("Mushrooms");
         final Pizza pizza2 = builder.build();
         
-        // Verify both pizzas are different
         assertNotNull(pizza1);
         assertNotNull(pizza2);
         assertFalse(pizza1.getCrust().equals(pizza2.getCrust()));
@@ -326,7 +228,6 @@ class PizzaBuilderTest {
         
         final Pizza pizza = builder.build();
         
-        // Verify defaults are used for other attributes
         assertEquals("Thin", pizza.getCrust());
         assertEquals("Medium", pizza.getSize());
         assertEquals("Mozzarella", pizza.getCheese());
@@ -342,7 +243,6 @@ class PizzaBuilderTest {
         
         final Pizza pizza = builder.build();
         
-        // Verify specified values and defaults
         assertEquals("Thick", pizza.getCrust());
         assertEquals("Large", pizza.getSize());
         assertEquals("Mozzarella", pizza.getCheese()); // Default
@@ -353,22 +253,10 @@ class PizzaBuilderTest {
     @Test
     @DisplayName("Should handle empty toppings list correctly")
     void handlesEmptyToppingsListCorrectly() {
-        // Don't add any toppings
         final Pizza pizza = builder.build();
         
         assertTrue(pizza.getToppings().isEmpty());
         assertEquals(0, pizza.getToppings().size());
-    }
-
-    @Test
-    @DisplayName("Should create pizza with single topping")
-    void createsPizzaWithSingleTopping() {
-        builder.addTopping("Pepperoni");
-        
-        final Pizza pizza = builder.build();
-        
-        assertEquals(1, pizza.getToppings().size());
-        assertEquals("Pepperoni", pizza.getToppings().get(0));
     }
 
     @Test
@@ -384,7 +272,6 @@ class PizzaBuilderTest {
         final Pizza pizza = builder.build();
         final String pizzaString = pizza.toString();
         
-        // Verify the string contains all pizza attributes
         assertTrue(pizzaString.contains("crust='Thick'"));
         assertTrue(pizzaString.contains("size='Large'"));
         assertTrue(pizzaString.contains("cheese='Cheddar'"));

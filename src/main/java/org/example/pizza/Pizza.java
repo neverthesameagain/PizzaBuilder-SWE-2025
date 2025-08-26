@@ -7,43 +7,30 @@ import java.util.List;
  * Represents a fully configured, immutable pizza.
  *
  * <p>This class is designed as a value object - once created, it cannot be changed.
- * This ensures thread safety and prevents accidental modifications after the pizza
- * has been built. All internal data is protected from external modification.
+ * All internal data is protected from external modification.
  *
- * <p>The Pizza object is created through the PizzaBuilder class, which handles
- * all the configuration and validation logic. This separation of concerns
- * makes the code more maintainable and follows the Builder pattern effectively.
- *
- * <p>Key design principles:
- * - Immutability: All fields are final and collections are unmodifiable
- * - Encapsulation: Constructor is package-private, only accessible by PizzaBuilder
- * - Defensive copying: Toppings list is copied to prevent external modification
+ * <p>The Pizza object is created through the PizzaBuilder class.
  */
 public final class Pizza {
     /** The type of crust (e.g., "Thin", "Thick", "Stuffed"). */
     private final String crust;
     
-    /** The size of the pizza (e.g., "Small", "Medium", "Large", "Extra Large"). */
+    /** The size of the pizza (e.g., "Small", "Medium", "Large"). */
     private final String size;
     
-    /** The type of cheese used (e.g., "Mozzarella", "Cheddar", "Parmesan"). */
+    /** The type of cheese used (e.g., "Mozzarella", "Cheddar"). */
     private final String cheese;
     
-    /** The sauce type (e.g., "Tomato", "BBQ", "White", "Pesto"). */
+    /** The sauce type (e.g., "Tomato", "BBQ", "White"). */
     private final String sauce;
     
-    /** 
-     * List of toppings in the order they were added.
-     * Duplicates are allowed and order is preserved for consistency.
-     */
+    /** List of toppings in the order they were added. */
     private final List<String> toppings;
 
     /**
      * Creates a new Pizza with the specified configuration.
      *
-     * <p>This constructor is package-private, meaning only classes in the same
-     * package (like PizzaBuilder) can create Pizza instances. This enforces
-     * the use of the Builder pattern and prevents direct instantiation.
+     * <p>Constructor is package-private to enforce Builder pattern usage.
      *
      * @param crustValue the type of crust
      * @param sizeValue the size of the pizza
@@ -100,9 +87,7 @@ public final class Pizza {
     /**
      * Gets an unmodifiable view of the toppings list.
      *
-     * <p>This method returns a view that cannot be modified, ensuring that
-     * the internal toppings list remains unchanged. Any attempt to modify
-     * the returned list will throw an UnsupportedOperationException.
+     * <p>Any attempt to modify the returned list will throw an UnsupportedOperationException.
      *
      * @return an unmodifiable view of the toppings in insertion order
      */
@@ -112,9 +97,6 @@ public final class Pizza {
 
     /**
      * Returns a string representation of this pizza.
-     *
-     * <p>Useful for debugging and logging purposes. The format shows all
-     * pizza attributes in a readable format.
      *
      * @return a string representation of the pizza
      */
