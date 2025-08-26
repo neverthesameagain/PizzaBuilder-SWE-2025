@@ -202,26 +202,21 @@ Pizza pizza2 = builder.build();
 
 ## Testing
 
-The project includes a comprehensive test suite that covers:
+The project includes test cases that cover:
 
-- ✅ **Basic functionality** - Setting and getting pizza attributes
-- ✅ **Default values** - Ensuring defaults work correctly
-- ✅ **Input validation** - Testing null and blank value handling
-- ✅ **Immutability** - Verifying pizzas cannot be modified after creation
-- ✅ **Edge cases** - Special characters, whitespace trimming, etc.
-- ✅ **Multiple pizzas** - Building several pizzas with the same builder
+- **Basic functionality** - Setting and getting pizza attributes
+- **Default values** - Ensuring defaults work correctly
+- **Input validation** - Testing null and blank value 
+- **Immutability** - Verifying pizzas cannot be modified after creation
+- **Edge cases** - Special characters, whitespace trimming, etc.
+- **Multiple pizzas** - Building several pizzas with the same builder
 
 ### Running Tests
 
 ```bash
 # Run all tests
-mvn test
+mvn clean test
 
-# Run tests with detailed output
-mvn test -Dtest=PizzaBuilderTest
-
-# Run specific test method
-mvn test -Dtest=PizzaBuilderTest#buildsPizzaWithBuilderSetters
 ```
 
 
@@ -231,26 +226,19 @@ mvn test -Dtest=PizzaBuilderTest#buildsPizzaWithBuilderSetters
 ## Code Quality
 
 - **Checkstyle**: Enforces consistent code formatting and style
-- **JUnit 5**: Testing framework with comprehensive assertions
+- **JUnit 5**: Testing framework 
 - **Maven**: Standard build tool with dependency management
 
 
 ### Code Quality Checks
 
 ```bash
-# Run checkstyle validation
+#  checkstyle validation
 mvn validate
 
-# Run tests and checkstyle
+#  tests and checkstyle
 mvn clean verify
 ```
-or 
-```bash
-mvn clean test
-```
-
-
-
 
 ## Resources referred to
 
