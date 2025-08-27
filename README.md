@@ -1,7 +1,7 @@
 
 ## Pizza Builder (Java)
 
-A  Java project demonstrating the **Builder pattern** to create immutable pizzas with sensible defaults and input validation.
+A  Java project demonstrating the **Builder pattern** to create immutable pizzas with  defaults and input validation.
 
 ### Requirements
 - Java 24+
