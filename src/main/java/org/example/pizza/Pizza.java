@@ -14,7 +14,7 @@ public final class Pizza {
     /** Cheese type. */
     private final String cheese;
     
-    /** Toppings list. */
+    /** Toppings as list. */
     private final List<String> toppings;
 
     /**
