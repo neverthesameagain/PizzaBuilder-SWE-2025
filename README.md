@@ -45,15 +45,31 @@ System.out.println(pizza);
 
 ### UML Diagram
 
-```
-+----------------+       builds       +------------+
-|  PizzaBuilder  |------------------->|   Pizza    |
-+----------------+                    +------------+
-| - crust        |                    | + crust    |
-| - size         |                    | + size     |
-| - cheese       |                    | + cheese   |
-| - toppings     |                    | + toppings |
-+----------------+                    +------------+
+
+
+```mermaid
+classDiagram
+    class PizzaBuilder {
+        - String crust
+        - String size
+        - String cheese
+        - List<String> toppings
+        + setCrust(String): PizzaBuilder
+        + setSize(String): PizzaBuilder
+        + setCheese(String): PizzaBuilder
+        + addTopping(String): PizzaBuilder
+        + build(): Pizza
+    }
+
+    class Pizza {
+        + final String crust
+        + final String size
+        + final String cheese
+        + final List<String> toppings
+    }
+
+    PizzaBuilder --> Pizza : builds
+
 ```
 
 ### Defaults
