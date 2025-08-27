@@ -5,10 +5,10 @@ import java.util.List;
 
 /** Builder for creating customizable pizzas. */
 public final class PizzaBuilder {
-    /** Crust type. */
+    /** Crust type. */ 
     private String crust = "Thin";
     
-    /** Size. */
+    /** Size . */
     private String size = "Medium";
     
     /** Cheese type. */
