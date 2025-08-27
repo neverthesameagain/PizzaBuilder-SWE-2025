@@ -13,6 +13,12 @@ git clone https://github.com/neverthesameagain/PizzaBuilder-SWE-2025
 cd pizza-builder
 ```
 ```bash
+mvn clean compile
+````
+```bash
+mvn checkstyle:check
+````
+```bash
 mvn clean test
 ````
 
