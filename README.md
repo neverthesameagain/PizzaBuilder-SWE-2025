@@ -23,7 +23,7 @@ mvn clean test
 ````
 
 ### Builder Pattern
-Creating a pizza has several optional attributes. The Builder pattern lets us set only what we need, step by step, and then build a single immutable result. ### How the Builder pattern is implemented
+Creating a pizza has several optional attributes. The Builder pattern lets us set only what we need, step by step, and then build a single immutable result.
 
 
 - **`PizzaBuilder` (Builder)**  
